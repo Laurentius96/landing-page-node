@@ -28,9 +28,17 @@
       </ul>
     </nav>
 
+    <% if(message != "") { %>
+    <section id="message">
+      <p><%= message %></p>
+      <span id="close">&times;</span>
+    </section>
+    <% } %>
+
     <header>
       <article>
         <h1>Bem vindo(a)<%= titulo %></h1>
+        <!-- <%  %> indica que você quer usar o JavaScript | = mostra que você quer rescatar esse dado -->
         <p>
           Usar a força revolucionária da tecnologia para conectar pessoas e
           expandir horizontes com metodologias e ensino inovador. Este é o nosso
@@ -89,7 +97,7 @@
     <section id="inscrever">
       <h2>Inscreva-se!</h2>
 
-      <form action="">
+      <form action="/subscription" method="POST">
         <div>
           <label for="nome">Nome: </label>
           <input
@@ -100,7 +108,7 @@
             required
           />
         </div>
-
+        <!-- label é uma etiqueta para o id -->
         <div>
           <label for="email">E-mail: </label>
           <input
@@ -111,7 +119,7 @@
             required
           />
         </div>
-
+        <!-- required faz com que o campo seja obrigatório -->
         <button type="submit">Inscrever-se</button>
       </form>
     </section>
@@ -122,5 +130,6 @@
         <a href="https://blueedtech.com.br/" target="_blank"> BlueEdtech</a>
       </p>
     </footer>
+    <script src="/js/script.js"></script>
   </body>
 </html>

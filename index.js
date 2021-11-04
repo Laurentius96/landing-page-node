@@ -31,23 +31,34 @@ const port = 3000; // Const para armanezar a porta do servidor
 
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.urlencoded());
 app.set("view engine", "ejs");
+
+// Declarando um var chamada message com string vazia, ela vai ser passada
+let message = "";
 
 // Rota principal que recebe uma função de callback que recebe dois parametros:
 // req de requisição
 // res de resposta
 // Substituição de function por arrow function
-app.get("/", (req, res) => {
-  res.send("Hello World"); // Responde a requisição da rota com um texto
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World!"); // Responde a requisição da rota com um texto
+// });
 
-app.get("/index", (req, res) => {
+app.get("/", (req, res) => {
   const devList = ["Backend", "Frontend", "Fullstack"];
   const analyticsList = ["Engenharia de dados", "Ciência de dados"];
+  // Renderiza o aruivo "index.ejs", o FJS
+
+  setTimeout(() => {
+    message = "";
+  }, 10000);
+
   res.render("index", {
     titulo: "Blue",
     devList: devList,
     analyticsList: analyticsList,
+    message,
   });
 });
 
@@ -58,3 +69,8 @@ app.listen(port, () =>
 );
 
 // // Rotas dos tipo "post" nãp podem ser chamadas na URL
+app.post("/subscription", (req, res) => {
+  const { nome, email } = req.body;
+  message = `Parabéns ${nome}, sua inscrição foi realizada com sucesso! Um e-mail foi enviado para: ${email}`;
+  res.redirect("/");
+});
