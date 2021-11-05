@@ -27,7 +27,7 @@
 // Importa o módulo express para esse arquivo
 const express = require("express");
 const app = express(); // Instancia uma referência do express no projeto
-const port = 3000; // Const para armanezar a porta do servidor
+const port = process.env.PORT || 3000; // Const para armanezar a porta do servidor
 
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
